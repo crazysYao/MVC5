@@ -84,7 +84,7 @@ namespace MVC5.Controllers
         {
             //data.Remove
             data.Remove(data.FirstOrDefault(p => p.id == id));
-            return RedirectToAction("Index"); ;
+            return RedirectToAction("Index");
         }
     }
 }
