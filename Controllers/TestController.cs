@@ -25,6 +25,7 @@ namespace MVC5.Controllers
             return View(data);
         }
 
+
         public ActionResult Create()
         {
 
@@ -32,6 +33,7 @@ namespace MVC5.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Person person)
         {
             person.id = data.OrderByDescending(u => u.id).Select(d => d.id).FirstOrDefault() + 1;
