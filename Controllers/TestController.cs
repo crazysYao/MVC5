@@ -10,17 +10,39 @@ namespace MVC5.Controllers
 {
     public class TestController : Controller
     {
+        static List<Person> data = new List<Person>
+        {
+            new Person() {id=1, Name = "Will", Age =18 },
+            new Person() {id=2, Name = "Apple", Age =18 },
+            new Person() {id=3, Name = "banana", Age =18 },
+            new Person() {id=4, Name = "haha", Age =18 },
+        };
+
         // GET: Test
         public ActionResult Index()
         {
-            var data = new List<Person>
-            {
-                new Person() {id=1, Name = "Will", Age =18 },
-                new Person() {id=2, Name = "Apple", Age =18 },
-                new Person() {id=3, Name = "banana", Age =18 },
-                new Person() {id=4, Name = "haha", Age =18 },
-            };
+            
             return View(data);
+        }
+
+        public ActionResult Create()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                // todo : Save
+                data.Add(person);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(person);
         }
     }
 }
