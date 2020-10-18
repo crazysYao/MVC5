@@ -54,7 +54,6 @@ namespace MVC5.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id,Person person)
         {
             if (ModelState.IsValid)
@@ -81,7 +80,6 @@ namespace MVC5.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, FormCollection form)
         {
             //data.Remove
