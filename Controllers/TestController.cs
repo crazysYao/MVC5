@@ -13,9 +13,9 @@ namespace MVC5.Controllers
         static List<Person> data = new List<Person>
         {
             new Person() {id=1, Name = "Will", Age =18 },
-            new Person() {id=2, Name = "Apple", Age =18 },
-            new Person() {id=3, Name = "banana", Age =18 },
-            new Person() {id=4, Name = "haha", Age =18 },
+            new Person() {id=2, Name = "Apple", Age =23 },
+            new Person() {id=3, Name = "banana", Age =40 },
+            new Person() {id=4, Name = "haha", Age =41 },
         };
 
         // GET: Test
@@ -34,8 +34,10 @@ namespace MVC5.Controllers
         [HttpPost]
         public ActionResult Create(Person person)
         {
+            person.id = data.OrderByDescending(u => u.id).Select(d => d.id).FirstOrDefault() + 1;
             if (ModelState.IsValid)
             {
+
                 // todo : Save
                 data.Add(person);
 
@@ -64,6 +66,25 @@ namespace MVC5.Controllers
             }
 
             return View(person);
+        }
+
+        public ActionResult Details(int id)
+        { 
+            return View(data.FirstOrDefault(p => p.id == id));
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+            return View(data.FirstOrDefault(p => p.id == id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection form)
+        {
+            //data.Remove
+            data.Remove(data.FirstOrDefault(p => p.id == id));
+            return RedirectToAction("Index"); ;
         }
     }
 }
