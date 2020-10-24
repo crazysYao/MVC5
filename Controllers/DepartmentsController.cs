@@ -37,7 +37,7 @@ namespace MVC5.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.InstructorID = new SelectList(db.Person, "ID", "FirstName");
+            ViewBag.InstructorID = new SelectList(db.Person, "ID", "FirstName", department.InstructorID);
             return View(department);
         }
 

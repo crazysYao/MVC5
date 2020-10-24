@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5.Models;
+using Omu.ValueInjecter;
 
 namespace MVC5.Controllers
 {
@@ -82,11 +83,15 @@ namespace MVC5.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CourseID,Title,Credits,DepartmentID")] Course course)
+        public ActionResult Edit(int id, CourseEdit course)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                //db.Entry(course).State = EntityState.Modified;
+
+                var item = db.Course.Find(id);
+                item.InjectFrom(course);// 套件 nuget ValueInjecter
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
