@@ -1,4 +1,5 @@
 ﻿using MVC5.Models;
+using Omu.ValueInjecter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,15 +51,17 @@ namespace MVC5.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int? id, Department department)
+        public ActionResult Edit(int? id, DepartmentEdit department)
         {
             if (ModelState.IsValid)
             {
                 var item = db.Department.Find(id);
-                item.Budget = department.Budget;
-                item.Name = department.Name;
-                item.StartDate = department.StartDate;
-                item.InstructorID = department.InstructorID; 
+                item.InjectFrom(department);// 套件 nuget ValueInjecter
+                //item.Budget = department.Budget;
+                //item.Name = department.Name;
+                //item.StartDate = department.StartDate;
+                //item.InstructorID = department.InstructorID; 
+
 
                 db.SaveChanges();
 
