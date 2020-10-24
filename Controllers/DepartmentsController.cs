@@ -96,5 +96,21 @@ namespace MVC5.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Department department = db.Department.Find(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+            return View(department);
+        }
+
+                       
+
     }
 }
