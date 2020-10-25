@@ -17,8 +17,8 @@ namespace MVC5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
-            this.Enrollment = new HashSet<Enrollment>();
-            this.Person = new HashSet<Person>();
+            this.Enrollments = new HashSet<Enrollment>();
+            this.Teachers = new HashSet<Person>();
         }
     
         public int CourseID { get; set; }
@@ -29,8 +29,8 @@ namespace MVC5.Models
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Enrollment> Enrollment { get; set; }
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> Person { get; set; }
+        public virtual ICollection<Person> Teachers { get; set; }
     }
 }

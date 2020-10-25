@@ -44,7 +44,8 @@ namespace MVC5.Controllers
         public ActionResult Edit(int? id)
         {
             var dept = db.Department.Find(id);
-            ViewBag.InstructorID = new SelectList(db.Person, "ID", "FirstName", dept.InstructorID);
+            ViewBag.InstructorID 
+                = new SelectList(db.Person.OrderBy( o => o.FirstName ), "ID", "FirstName", dept.InstructorID);
 
 
             return View(db.Department.Find(id));
