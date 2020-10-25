@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Http.Results;
 using System.Web.Mvc;
@@ -14,6 +15,7 @@ namespace MVC5.Controllers
     public class ReportsController : Controller
     {
         ContosoUniversityEntities db = new ContosoUniversityEntities();
+        StringBuilder sb = new StringBuilder();
 
 
         public ReportsController()
@@ -23,6 +25,10 @@ namespace MVC5.Controllers
                 Debug.WriteLine("-----------------------------------------");
                 Debug.WriteLine(msg);
                 Debug.WriteLine("-----------------------------------------");
+
+
+                sb.AppendLine(msg);
+                sb.AppendLine("-----------------------------------------");
             };
         }
 
@@ -43,6 +49,8 @@ namespace MVC5.Controllers
                             AvgGrade = c.Enrollments.Where(e => e.Grade.HasValue).Average(e => e.Grade.Value)
                         }).ToList();
 
+            ViewBag.SQL = sb.ToString();
+
             return View(data);
         }
 
@@ -55,8 +63,10 @@ SELECT
 	(SELECT COUNT(CourseID) FROM CourseInstructor WHERE (CourseID = Course.CourseID)) AS TeacherCount,
 	(SELECT COUNT(CourseID) FROM Enrollment WHERE (Course.CourseID = Enrollment.CourseID)) AS StudentCount,
 	(SELECT AVG(Cast(Grade as Float)) FROM Enrollment WHERE (Course.CourseID = Enrollment.CourseID)) AS AvgGrade
-FROM   Course
-GROUP BY Course.CourseID, Course.Title");
+FROM   Course").ToList();
+
+
+            ViewBag.SQL = sb.ToString();
 
             return View("CoursesReport1", data);
         }
@@ -74,12 +84,35 @@ SELECT
 	(SELECT COUNT(CourseID) FROM Enrollment WHERE (Course.CourseID = Enrollment.CourseID)) AS StudentCount,
 	(SELECT AVG(Cast(Grade as Float)) FROM Enrollment WHERE (Course.CourseID = Enrollment.CourseID)) AS AvgGrade
 FROM   Course
-WHERE  Course.CourseID = @p0
-GROUP BY Course.CourseID, Course.Title", id);
+WHERE  Course.CourseID = @p0 ", id).ToList();
+
+
+            ViewBag.SQL = sb.ToString();
+
 
             return View("CoursesReport1", data);
         }
-    
+
+        //這邊要加入預存程序!
+
+        public ActionResult CoursesReport4(int id)
+        {
+            var data = db.GetCourseReport(id);
+
+            ViewBag.SQL = sb.ToString();
+
+            return View(data);
+        }
+
+        public ActionResult CoursesReport5(int id)
+        {
+            var data = db.Database.SqlQuery<CoursesReport1VM>("EXEC GetCourseReport @p0", id).ToList();
+
+            ViewBag.SQL = sb.ToString();
+
+            return View("CoursesReport1", data);
+        }
+
 
     }
 }
