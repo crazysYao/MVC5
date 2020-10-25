@@ -3,7 +3,7 @@ namespace MVC5.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     [MetadataType(typeof(DepartmentMetaData))]
     public partial class Department : IValidatableObject
     {
