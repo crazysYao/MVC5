@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace MVC5.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

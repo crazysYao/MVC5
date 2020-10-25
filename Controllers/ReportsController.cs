@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace MVC5.Controllers
 {
-    public class ReportsController : Controller
+    public class ReportsController : BaseController
     {
         ContosoUniversityEntities db = new ContosoUniversityEntities();
         StringBuilder sb = new StringBuilder();

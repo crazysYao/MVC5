@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace MVC5.Controllers
 {
-    public abstract class BaseController: Controller
+    public abstract class BaseController : Controller
     {
+
         protected override void HandleUnknownAction(string actionName)
         {
             this.Redirect("/?redir=" + actionName).ExecuteResult(ControllerContext);
         }
-
     }
 }
