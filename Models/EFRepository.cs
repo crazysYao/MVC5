@@ -37,7 +37,7 @@ namespace MVC5.Models
 			ObjectSet.Add(entity);
 		}
 
-		public void Delete(T entity)
+		public virtual void Delete(T entity)
 		{
 			ObjectSet.Remove(entity);
 		}

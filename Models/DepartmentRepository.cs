@@ -10,6 +10,16 @@ namespace MVC5.Models
 		{
 			return this.All().FirstOrDefault(p => p.DepartmentID == id);
 		}
+
+		public override IQueryable<Department> All()
+		{
+			return base.All().Where(p => p.IsDeleted == false);
+		}
+
+		public override void Delete(Department entity)
+		{
+			entity.IsDeleted = true;
+		}
 	}
 
 	public  interface IDepartmentRepository : IRepository<Department>
