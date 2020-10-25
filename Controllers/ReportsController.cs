@@ -2,6 +2,7 @@
 using MVC5.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,17 @@ namespace MVC5.Controllers
     public class ReportsController : Controller
     {
         ContosoUniversityEntities db = new ContosoUniversityEntities();
+
+
+        public ReportsController()
+        {
+            db.Database.Log = (msg) =>
+            {
+                Debug.WriteLine("-----------------------------------------");
+                Debug.WriteLine(msg);
+                Debug.WriteLine("-----------------------------------------");
+            };
+        }
 
         public ActionResult Index()
         {
