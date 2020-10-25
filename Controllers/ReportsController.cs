@@ -94,9 +94,22 @@ WHERE  Course.CourseID = @p0 ", id).ToList();
         }
 
         //這邊要加入預存程序!
-
-        public ActionResult CoursesReport4(int id)
+        //CREATE PROCEDURE[dbo].[GetCourseReport]
+        //        @CourseID int
+        //        AS
+        //SELECT
+        //    Course.CourseID,
+        //    Course.Title AS CourseName,
+        // (SELECT COUNT(CourseID) FROM CourseInstructor WHERE (CourseID = Course.CourseID)) AS TeacherCount,
+        // (SELECT COUNT(CourseID) FROM Enrollment WHERE(Course.CourseID = Enrollment.CourseID)) AS StudentCount,
+        // (SELECT AVG(Cast(Grade as Float)) FROM Enrollment WHERE(Course.CourseID = Enrollment.CourseID)) AS AvgGrade
+        //FROM Course
+        //WHERE Course.CourseID=@CourseID
+        public ActionResult CoursesReport4(int? id)
         {
+            if (!id.HasValue)
+                return RedirectToAction("CoursesReport1");
+
             var data = db.GetCourseReport(id);
 
             ViewBag.SQL = sb.ToString();
@@ -104,8 +117,10 @@ WHERE  Course.CourseID = @p0 ", id).ToList();
             return View(data);
         }
 
-        public ActionResult CoursesReport5(int id)
+        public ActionResult CoursesReport5(int? id)
         {
+            if (!id.HasValue)
+                return RedirectToAction("CoursesReport1");
             var data = db.Database.SqlQuery<CoursesReport1VM>("EXEC GetCourseReport @p0", id).ToList();
 
             ViewBag.SQL = sb.ToString();
