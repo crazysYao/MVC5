@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -86,16 +87,15 @@ namespace MVC5.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, CourseEdit course)
+        [HandleError(ExceptionType = typeof(DbEntityValidationException), View = "ErrorDbEntityValidationException")]
+        public ActionResult Edit(CourseEdit course)
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(course).State = EntityState.Modified;
-
-                var item = db.Course.Find(id);
-                item.InjectFrom(course);// 套件 nuget ValueInjecter
-
+                var c = db.Course.Find(course.CourseID);
+                c.InjectFrom(course);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             ViewBag.DepartmentID = new SelectList(db.Department, "DepartmentID", "Name", course.DepartmentID);

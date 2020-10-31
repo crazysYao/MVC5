@@ -17,6 +17,7 @@ namespace MVC5.Models
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
         public string Title { get; set; }
         [Required]
+        [MustBeEven]
         public int Credits { get; set; }
         [Required]
         public int DepartmentID { get; set; }
