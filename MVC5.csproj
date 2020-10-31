@@ -345,6 +345,7 @@
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\MB\Index.cshtml" />
     <Content Include="Views\MB\ReadTempData.cshtml" />
+    <Content Include="Views\MB\CourseBatchEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />
