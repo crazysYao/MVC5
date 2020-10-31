@@ -3,6 +3,7 @@ namespace MVC5.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Script.Serialization;
 
     [MetadataType(typeof(DepartmentMetaData))]
     public partial class Department : IValidatableObject
@@ -35,5 +36,15 @@ namespace MVC5.Models
     
         public virtual ICollection<Course> Course { get; set; }
         public virtual Person Person { get; set; }
+    }
+
+
+    public class DepartmentJson
+    {
+        public int DepartmentID { get; set; }
+        public string Name { get; set; }
+        public decimal Budget { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<int> InstructorID { get; set; }
     }
 }

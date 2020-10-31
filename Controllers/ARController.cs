@@ -1,4 +1,5 @@
 ﻿using MVC5.Models;
+using Omu.ValueInjecter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,7 @@ namespace MVC5.Controllers
         [HttpPost]
         public ActionResult JsonTest2()
         {
+            //延遲載入 會導致 class jsonIgnore or scriptIgnore 無效 
             repo.UnitOfWork.Context.Configuration.LazyLoadingEnabled = false;
 
             var data = repo.GetOne(1);
@@ -73,6 +75,15 @@ namespace MVC5.Controllers
             return Json(data);
         }
 
+        public ActionResult JsonTest3()
+        {
+            var data = repo.GetOne(1);
 
+            var result = new DepartmentJson();
+
+            result.InjectFrom(data);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
