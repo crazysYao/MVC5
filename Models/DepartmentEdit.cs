@@ -21,6 +21,7 @@ namespace MVC5.Models
         {
             if (this.Name != "Will" && this.Budget > 100)
             {
+                //throw new ArgumentException("ERROR");//指定輸出錯誤
                 yield return new ValidationResult("您的預算不足", new string[] { "Budget" });
             }
         }
