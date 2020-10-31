@@ -9,9 +9,11 @@
 
 namespace MVC5.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Script.Serialization;
+
     public partial class Department
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +21,7 @@ namespace MVC5.Models
         {
             this.Course = new HashSet<Course>();
         }
-    
+
         public int DepartmentID { get; set; }
         public string Name { get; set; }
         public decimal Budget { get; set; }
@@ -29,7 +31,9 @@ namespace MVC5.Models
         public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [ScriptIgnore(ApplyToOverrides = true)]
         public virtual ICollection<Course> Course { get; set; }
+        
         public virtual Person Person { get; set; }
     }
 }
