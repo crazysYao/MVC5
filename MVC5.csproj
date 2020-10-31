@@ -148,6 +148,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ARController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ParpareDepartmentListForDropDownListAttribute.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\MBController.cs" />
@@ -350,6 +351,7 @@
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\ParpareDepartmentListForDropDownListAttribute\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
