@@ -154,6 +154,7 @@
     <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -348,6 +349,7 @@
     <Content Include="Views\MB\ReadTempData.cshtml" />
     <Content Include="Views\MB\CourseBatchEdit.cshtml" />
     <Content Include="Views\Shared\ErrorDbEntityValidationException.cshtml" />
+    <Content Include="Views\VT\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />
