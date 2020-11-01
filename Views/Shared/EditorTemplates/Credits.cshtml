@@ -1,0 +1,15 @@
+﻿@model int
+
+@for( int i = 0; i <= 5; i++)
+{ 
+    <label>
+        <label>@Html.RadioButton("", i, Model == i) 
+            @for (int j=0;j <= i; j++)
+            {
+                <span>幹</span>
+            }
+            
+        </label>
+    </label>
+    
+}
