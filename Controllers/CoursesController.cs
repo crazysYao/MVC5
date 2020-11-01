@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5.Models;
 using Omu.ValueInjecter;
+using X.PagedList;
 
 namespace MVC5.Controllers
 {
