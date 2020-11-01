@@ -53,7 +53,7 @@
 
     <hr />
 
-    @Html.Partial("CoursesUnderDetails", Model.Course)
+    @Html.Action("CoursesUnderDetails", new { id = Model.DepartmentID })
 
 
 </div>
