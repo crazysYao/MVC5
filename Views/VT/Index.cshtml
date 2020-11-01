@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+@{ var data = ViewBag.data; }
+
+@foreach (int box in data)
+{
+    @box
+}
+
+<br />
+
+@foreach (int box in data)
+{
+    @(@box + " ")
+}
+<br />
+
+<ul>
+    @foreach (int box in data)
+    {
+        <li>
+            @(box)
+        </li>
+    }
+</ul>
+
+@{
+    Layout = null;
+}
+
