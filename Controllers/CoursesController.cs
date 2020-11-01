@@ -18,10 +18,10 @@ namespace MVC5.Controllers
         private ContosoUniversityEntities db = new ContosoUniversityEntities();
 
         // GET: Courses
-        public ActionResult Index()
+        public ActionResult Index(int pageNo = 1)
         {
-            var course = db.Course.Include(c => c.Department);
-            return View(course.ToList());
+            var course = db.Course.Include(c => c.Department).OrderBy(p => p.CourseID).ToPagedList(pageNo, 4);
+            return View(course);
         }
 
         // GET: Courses/Details/5

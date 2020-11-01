@@ -51,3 +51,9 @@
     }
 
 </table>
+
+@using X.PagedList
+@using X.PagedList.Mvc
+
+@Html.PagedListPager(Model as IPagedList, (pno) => Url.Action("Index", new { pageNo = pno }))
+
